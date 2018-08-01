@@ -1,0 +1,183 @@
+vueGreen = #4fc08d
+vueBlue = #345
+*
+	align-items center
+	flex-wrap wrap
+header
+	display block
+	background linear-gradient(135deg, vueBlue 50%, vueGreen 50%)
+	padding 20px 20px 0 20px
+	.logo
+		color white
+		display inline-block 
+		font-weight 800
+		font-size 2.6em
+		margin-bottom 20px
+body
+	font-family 'Open Sans', sans-serif
+	font-size 16px
+	background #eee
+	margin 0
+	overflow-y scroll
+input
+	padding 5px
+	font-size 16px
+button
+	padding 5px 10px
+	font-size 16px
+input[type=checkbox]
+	width 20px
+	height 20px
+label
+	display flex
+	cursor pointer
+a
+	text-decoration none
+	&:hover
+		text-decoration underline
+h1
+	font-weight normal
+table
+	border-collapse collapse
+main
+	padding 20px
+.menu
+	div
+		font-weight 600
+		color white
+		display inline-block
+		padding 10px 20px
+		cursor pointer
+		border-top-left-radius 2px
+		border-top-right-radius 2px
+		&:hover
+			background tint(vueBlue,10%)
+		&.active
+			background #eee
+			color vueBlue	
+.controls
+	display flex
+	> *
+		margin-left 10px
+	button
+		margin-left 3px
+.list
+	display flex
+	margin 10px 0
+	.item
+		color white
+		text-shadow 0 0 1px #000
+		margin 5px
+		padding 10px 15px
+		flex-grow 1
+		border-radius 4px
+		font-family Monospace
+		box-shadow 0 1px 2px #666
+		cursor pointer
+		overflow hidden
+		white-space nowrap
+		text-align center
+		transition background 1s, border-radius 2s, transform 0.2s, opacity 0.2s
+pre
+	background white
+	border 1px solid #aaa
+	padding 10px
+.tableHead
+	display flex
+	background vueGreen
+	color vueBlue
+	font-weight 600
+	padding 10px 10px 0px 10px
+	user-select none
+	.search
+		border none
+		font-size 20px
+	.count
+		padding 0 10px
+		margin-left auto
+	.filter
+		display flex
+		padding 0px 10px
+	.fields
+		width 100%
+		display flex
+		clear both
+		flex-wrap nowrap
+		div
+			box-sizing border-box
+			padding 10px
+			flex-grow 1
+			&.sortable
+				&:hover
+					cursor pointer
+					background tint(vueGreen,20%)
+.virtual-scroller
+	background white
+	padding 10px
+	.item
+		cursor pointer
+		height 40px
+		&.odd
+			background #eee
+		&:hover
+			background tint(vueGreen,60%)
+	img
+		border-radius 50%
+		height 40px
+	td
+		padding 0 10px
+		&.ready
+			animation fadeIn 0.4s
+mark
+	background alpha(vueGreen,50%)
+	border-radius 4px
+.notifications
+	position fixed
+	display flex
+	z-index 100
+	top 10px
+	right 10px
+	div
+		background vueGreen
+		border-radius 99px
+		padding 10px 20px
+		color white
+		margin-left 10px
+.emoji
+	display inline-block
+	margin-left 10px
+	transform scale(1.5)
+
+@keyframes fadeIn
+	0%
+		color #eee //animating opacity causes some problems in tables
+	
+@media (max-width 1000px)
+	body
+		font-size 14px
+	main
+		padding 20px 0px
+	.fields
+		margin 0 -10px
+		width calc(100% + 20px) !important
+	.virtual-scroller
+		padding 0px
+		font-size 14px
+		td
+			padding 5px
+	.notifications div
+		padding 5px 10px
+
+
+//css from VirtualScroller
+.virtual-scroller:not(.page-mode) {
+  overflow-y: auto;
+}
+.item-container {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+}
+.items {
+  width: 100%;
+}

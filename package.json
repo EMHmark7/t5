@@ -1,0 +1,17 @@
+{
+  "name": "t3",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.51",
+    "babel-runtime": "^6.26.0",
+    "lodash": "^4.17.10",
+    "meteor-node-stubs": "^0.4.1",
+    "vue": "^2.5.16",
+    "vue-meteor-tracker": "^2.0.0-beta.3",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  }
+}
