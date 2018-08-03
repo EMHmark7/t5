@@ -1,58 +1,50 @@
 <template>
-<div>
-   <div v-if="dataLoaded && dataLded" v-for="tile in tiles" :style="tile.style">
-          {{ tile.zone }}
+<div>hello
+   <div v-if="tiles.length" v-for="tile in tiles" :style="tiles.style">
+          {{ tiles.zone }}
    </div> 
 </div> 
 </template> 
 
 <script>
-import {Meteor} from 'meteor/meteor'
+// can also try in template: v-if="typeof(tiles) !=='undefined'"
+
+import {Meteor} from 'meteor/meteor'           
+import { mapActions, mapGetters } from 'vuex'  //added from 'vuex'
+
 export default {
 
 data() {return {
-   dataLoaded:false,
-   tiles:{},
-   wt: document.documentElement.clientWidth-418,
-   ht: document.documentElement.clientHeight-98
    }
-},
-//here
-computed: {
-      dataLded() {if (this.$store.state.fullyLoaded && (typeof(this.$store.state.TILESETS) !=='undefined') 
-             && this.$store.state.count) {
-             this.tiles=this.$store.state.TILESETS[this.$store.state.actualTileSetNO].tiles
-             this.dataLoaded=true 
-             return true}
-      },  
-        // return this.$store.state.fullyLoaded && typeof(this.$store.state.TILESETS) !=='undefined'},
+}, // data
 
-//   tiles() { if (this.dataLoaded) {return }
-//            else {return null} 
-//   },
-
-},  //computed 
+computed: {                                 
+    ...mapGetters([
+        'tiles'
+    ]) 
+}, //computed 
 
 methods: {
-
-
-   winResize (event) {
-      this.wt = document.documentElement.clientWidth-418
-      this.ht = document.documentElement.clientHeight-98
-   }
-
+      ...mapActions([
+        'loadTileSets',
+        'loadFlds',
+        'loadRecs',
+        'loadApps'
+      ]),
 }, //methods
 
-mounted: function () {
- //  let timerId = setInterval(() => {this.dataLded} , 100);
- // setTimeout(() => { clearInterval(timerId)}, 5000);
+created () {
+   const tileSets = this.loadTileSets();
+   const flds = this.loadFlds();
+   const recs = this.loadRecs();
+   const apps = this.loadApps();
 
-  window.addEventListener('resize', this.winResize)
-},
-beforeDestroy: function () {
-  window.removeEventListener('resize', this.winResize)
-}
-
+      Promise
+        .all([tileSets, flds, recs, apps])
+        .then(() => {
+          // If you had a loading animation, this is a when you would disable it
+        })
+    }, //created
 }  //export    
 </script>
 
